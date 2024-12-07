@@ -7,7 +7,7 @@ namespace Infrastructure.Service;
 
 public class CompanyService: IServices<Company>
 {
-    DapperContext _context;
+    readonly DapperContext _context;
 
     public CompanyService()
     {

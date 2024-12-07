@@ -7,7 +7,7 @@ namespace Infrastructure.Service;
 
 public class DepartmentService:IServices<Department>
 {
-    DapperContext _context;
+    readonly DapperContext _context;
 
     public DepartmentService()
     {

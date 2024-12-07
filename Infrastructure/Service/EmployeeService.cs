@@ -7,7 +7,7 @@ namespace Infrastructure.Service;
 
 public class EmployeeService: IServices<Employee>
 {
-    DapperContext _context;
+    readonly DapperContext _context;
 
     public EmployeeService()
     {

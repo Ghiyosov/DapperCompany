@@ -7,7 +7,7 @@ namespace Infrastructure.Service;
 
 public class BranchService:IServices<Branch>
 {
-    DapperContext _context;
+    readonly DapperContext _context;
 
     public BranchService()
     {
