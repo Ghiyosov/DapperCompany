@@ -17,26 +17,31 @@ public class BranchService:IServices<Branch>
 
     public List<Branch> GetAll()
     {
-        return _context.GetConnection().Query<Branch>("SELECT * FROM Branch").ToList();
+        var res = _context.GetConnection().Query<Branch>("SELECT * FROM Branch").ToList();
+        return res;
     }
 
     public Branch GetById(int id)
     {
-        return _context.GetConnection().QueryFirstOrDefault<Branch>("SELECT * FROM Branch WHERE Id = @Id", new { Id = id });
+        var res = _context.GetConnection().QueryFirstOrDefault<Branch>("SELECT * FROM Branch WHERE Id = @Id", new { Id = id });
+        return res;
     }
 
     public bool Add(Branch entity)
     {
-        return _context.GetConnection().Execute("INSERT INTO Branch (Name,Description,DepartmentId) VALUES (@Name,@Description,@DepartmentId)", entity)>0;
+        var res = _context.GetConnection().Execute("INSERT INTO Branch (Name,Description,DepartmentId) VALUES (@Name,@Description,@DepartmentId)", entity);
+        return res > 0;
     }
 
     public bool Update(Branch entity)
     {
-        return _context.GetConnection().Execute("Update Branch set Name=@Name,Description=@Description,DepartmentId=@DepartmentId where Id=@Id", entity)>0;
+        var res = _context.GetConnection().Execute("Update Branch set Name=@Name,Description=@Description,DepartmentId=@DepartmentId where Id=@Id", entity);
+        return res > 0;
     }
 
     public bool Delete(int id)
     {
-        return _context.GetConnection().Execute("DELETE FROM Branch WHERE Id = @Id", new { Id = id })>0;
+        var res = _context.GetConnection().Execute("DELETE FROM Branch WHERE Id = @Id", new { Id = id });
+        return res > 0;
     }
 }

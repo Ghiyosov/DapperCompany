@@ -16,26 +16,33 @@ public class CompanyService: IServices<Company>
 
     public List<Company> GetAll()
     {
-        return _context.GetConnection().Query<Company>("SELECT * FROM Company").ToList();
+        var res = _context.GetConnection().Query<Company>("SELECT * FROM Company").ToList();
+        return res;
     }
 
     public Company GetById(int id)
     {
-        return _context.GetConnection().QueryFirstOrDefault<Company>("SELECT * FROM Company WHERE Id = @Id", new { Id = id });
+        var res = _context.GetConnection().QueryFirstOrDefault<Company>("SELECT * FROM Company WHERE Id = @Id", new { Id = id });
+        return res; 
     }
 
     public bool Add(Company entity)
     {
-        return _context.GetConnection().Execute("INSERT INTO Company (Name,Address,Description) VALUES (@Name,@Address,@Description)",entity)>0;
+        
+        var res = _context.GetConnection().Execute("INSERT INTO Company (Name,Address,Description) VALUES (@Name,@Address,@Description)",entity);
+        return res > 0;
     }
 
     public bool Update(Company entity)
     {
-        return _context.GetConnection().Execute("update Company set Name=@Name,Address=@Address,Description=@Description where Id=@Id",entity)>0;
+        var res = _context.GetConnection().Execute("update Company set Name=@Name,Address=@Address,Description=@Description where Id=@Id",entity);
+        return res > 0;
     }
 
     public bool Delete(int id)
     {
-        return _context.GetConnection().Execute("delete from Company WHERE Id = @Id",new { Id = id })>0;
+        
+        var res = _context.GetConnection().Execute("delete from Company WHERE Id = @Id",new { Id = id });
+        return res > 0;
     }
 }
